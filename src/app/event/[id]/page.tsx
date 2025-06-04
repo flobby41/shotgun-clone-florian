@@ -1,9 +1,5 @@
-'use client'
-
-import { ApolloProvider } from '@apollo/client'
-import { apolloClient } from '@/lib/apollo'
-import EventDetail from '@/components/EventDetail'
-import AppHeader from '@/components/AppHeader'
+import { mockEvents } from '@/lib/events'
+import EventPageClient from './EventPageClient'
 
 interface EventPageProps {
   params: {
@@ -11,15 +7,13 @@ interface EventPageProps {
   }
 }
 
+// Génère les paramètres statiques pour toutes les routes d'événements
+export async function generateStaticParams() {
+  return mockEvents.map((event) => ({
+    id: event.id,
+  }))
+}
+
 export default function EventPage({ params }: EventPageProps) {
-  return (
-    <ApolloProvider client={apolloClient}>
-      <div className="min-h-screen bg-black text-white">
-        <AppHeader />
-        <main>
-          <EventDetail eventId={params.id} />
-        </main>
-      </div>
-    </ApolloProvider>
-  )
+  return <EventPageClient eventId={params.id} />
 }

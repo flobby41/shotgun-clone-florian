@@ -38,7 +38,7 @@ export default function AppHeader() {
             <Link href="/wallet">
               <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
                 <Wallet className="h-4 w-4 mr-2" />
-                My Tickets
+                My Wallet
               </Button>
             </Link>
           </div>

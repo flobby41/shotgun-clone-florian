@@ -1,73 +1,72 @@
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
-import { mockEvents, Event } from './events'
-import { WalletService, Ticket } from './wallet'
+import { ApolloClient, InMemoryCache, from } from '@apollo/client'
+import { onError } from '@apollo/client/link/error'
+import { createHttpLink } from '@apollo/client/link/http'
+import { mockEvents } from './events'
+import { WalletService } from './wallet'
 
-// Mock GraphQL resolver
-const mockResolvers = {
-  Query: {
-    events: (_: any, { filter }: { filter?: string }) => {
-      let events = mockEvents
-      if (filter === 'today') {
-        const today = new Date().toDateString()
-        events = events.filter(event => new Date(event.date).toDateString() === today)
-      } else if (filter === 'weekend') {
-        events = events.filter(event => {
-          const eventDate = new Date(event.date)
-          const day = eventDate.getDay()
-          return day === 0 || day === 6 // Sunday or Saturday
-        })
+// Error link pour gérer les erreurs
+const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) =>
+      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+    )
+  }
+  if (networkError) {
+    console.log(`[Network error]: ${networkError}`)
+    // En cas d'erreur réseau, on utilise les données mock locales
+    return forward(operation)
+  }
+})
+
+// Configuration Apollo Client avec données mock locales
+export const apolloClient = new ApolloClient({
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          events: {
+            read(existing, { args }) {
+              const filter = args?.filter
+              let events = mockEvents
+              
+              if (filter === 'today') {
+                const today = new Date().toDateString()
+                events = events.filter(event => new Date(event.date).toDateString() === today)
+              } else if (filter === 'weekend') {
+                events = events.filter(event => {
+                  const eventDate = new Date(event.date)
+                  const day = eventDate.getDay()
+                  return day === 0 || day === 6
+                })
+              }
+              
+              return events
+            }
+          },
+          event: {
+            read(existing, { args }) {
+              const id = args?.id
+              return mockEvents.find(event => event.id === id) || null
+            }
+          },
+          walletTickets: {
+            read() {
+              return WalletService.getTickets()
+            }
+          }
+        }
       }
-      return events
+    }
+  }),
+  link: from([errorLink]),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-first',
+      errorPolicy: 'ignore'
     },
-    event: (_: any, { id }: { id: string }) => {
-      return mockEvents.find(event => event.id === id)
-    },
-    walletTickets: () => {
-      return WalletService.getTickets()
+    query: {
+      fetchPolicy: 'cache-first',
+      errorPolicy: 'ignore'
     }
   }
-}
-
-export const apolloClient = new ApolloClient({
-  uri: 'http://localhost:4000/graphql', // This would be your real GraphQL endpoint
-  cache: new InMemoryCache(),
-  // For now, we'll use local state with mock data
-  typeDefs: `
-    type Event {
-      id: ID!
-      title: String!
-      artist: String!
-      date: String!
-      time: String!
-      venue: String!
-      location: String!
-      price: Float!
-      image: String!
-      description: String
-      lineup: [String!]
-      tags: [String!]
-      latitude: Float
-      longitude: Float
-    }
-
-    type Ticket {
-      id: ID!
-      eventId: String!
-      eventTitle: String!
-      eventDate: String!
-      eventTime: String!
-      venue: String!
-      price: Float!
-      purchaseDate: String!
-      qrCode: String!
-      status: String!
-    }
-
-    type Query {
-      events(filter: String): [Event!]!
-      event(id: ID!): Event
-      walletTickets: [Ticket!]!
-    }
-  `,
-  resolvers: mockResolvers
 })

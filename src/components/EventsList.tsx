@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import EventCard from './EventCard'
 import { useState } from 'react'
 import { Calendar, Clock } from 'lucide-react'
+import { Event } from '@/lib/events'
 
 export default function EventsList() {
   const [filter, setFilter] = useState<string>('')
@@ -62,7 +63,7 @@ export default function EventsList() {
 
       {/* Events Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data?.events?.map((event: any) => (
+        {data?.events?.map((event: Event) => (
           <EventCard key={event.id} event={event} />
         ))}
       </div>

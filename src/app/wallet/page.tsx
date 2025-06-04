@@ -2,16 +2,16 @@
 
 import { ApolloProvider } from '@apollo/client'
 import { apolloClient } from '@/lib/apollo'
-import EventsList from '@/components/EventsList'
+import WalletView from '@/components/WalletView'
 import AppHeader from '@/components/AppHeader'
 
-export default function Home() {
+export default function WalletPage() {
   return (
     <ApolloProvider client={apolloClient}>
       <div className="min-h-screen bg-black text-white">
         <AppHeader />
         <main>
-          <EventsList />
+          <WalletView />
         </main>
       </div>
     </ApolloProvider>

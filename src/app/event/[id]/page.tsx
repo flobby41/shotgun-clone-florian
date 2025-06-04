@@ -2,16 +2,22 @@
 
 import { ApolloProvider } from '@apollo/client'
 import { apolloClient } from '@/lib/apollo'
-import EventsList from '@/components/EventsList'
+import EventDetail from '@/components/EventDetail'
 import AppHeader from '@/components/AppHeader'
 
-export default function Home() {
+interface EventPageProps {
+  params: {
+    id: string
+  }
+}
+
+export default function EventPage({ params }: EventPageProps) {
   return (
     <ApolloProvider client={apolloClient}>
       <div className="min-h-screen bg-black text-white">
         <AppHeader />
         <main>
-          <EventsList />
+          <EventDetail eventId={params.id} />
         </main>
       </div>
     </ApolloProvider>

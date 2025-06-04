@@ -1,19 +1,21 @@
-'use client'
-
-import { ApolloProvider } from '@apollo/client'
-import { apolloClient } from '@/lib/apollo'
-import EventsList from '@/components/EventsList'
-import AppHeader from '@/components/AppHeader'
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
+import PopularEvents from '@/components/PopularEvents'
+import ArtistSpotlight from '@/components/ArtistSpotlight'
+import AppFeatures from '@/components/AppFeatures'
+import OrganizerSection from '@/components/OrganizerSection'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <ApolloProvider client={apolloClient}>
-      <div className="min-h-screen bg-black text-white">
-        <AppHeader />
-        <main>
-          <EventsList />
-        </main>
-      </div>
-    </ApolloProvider>
+    <div className="min-h-screen bg-black text-white">
+      <Header />
+      <Hero />
+      <PopularEvents />
+      <ArtistSpotlight />
+      <AppFeatures />
+      <OrganizerSection />
+      <Footer />
+    </div>
   )
 }

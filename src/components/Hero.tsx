@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Star } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Hero() {
   return (
@@ -18,6 +19,15 @@ export default function Hero() {
               <p className="text-xl text-white/80 max-w-lg">
                 Download Shotgun to find the best parties in town.
               </p>
+            </div>
+
+            {/* Browse Events Button */}
+            <div className="mb-6">
+              <Link href="/events">
+                <Button className="bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-xl text-lg font-semibold transition-all hover:scale-105">
+                  🎵 Browse All Events
+                </Button>
+              </Link>
             </div>
 
             {/* App Store Buttons */}

@@ -2,9 +2,9 @@ import { mockEvents } from '@/lib/events'
 import EventPageClient from './EventPageClient'
 
 interface EventPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 // Génère les paramètres statiques pour toutes les routes d'événements
@@ -14,6 +14,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function EventPage({ params }: EventPageProps) {
-  return <EventPageClient eventId={params.id} />
+export default async function EventPage({ params }: EventPageProps) {
+  const { id } = await params
+  return <EventPageClient eventId={id} />
 }

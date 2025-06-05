@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { ChevronDown } from 'lucide-react'
+import Link from 'next/link'
+
 
 const events = [
   {
@@ -53,60 +55,64 @@ export default function PopularEvents() {
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {events.map((event) => (
-            <div key={event.id} className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-xl bg-gray-900">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-orange-500 text-white px-2 py-1 rounded text-sm font-medium">
-                    FRIDAY JUNE 20
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-4 space-y-3">
-                <h3 className="text-lg font-semibold line-clamp-2 group-hover:text-violet-400 transition-colors">
-                  {event.title}
-                </h3>
-
-                <div className="flex items-center justify-between text-sm text-gray-400">
-                  <span>{event.venue}</span>
-                  <span className="text-white font-semibold">{event.price}</span>
-                </div>
-
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-orange-400 font-medium">
-                    {event.date} | {event.time}
-                  </span>
-                </div>
-
-                {event.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {event.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-gray-800 rounded text-xs text-gray-300 uppercase"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+            <Link key={event.id} href={`/event/${event.id}`}>
+              <div className="group cursor-pointer">
+                <div className="relative overflow-hidden rounded-xl bg-gray-900">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-orange-500 text-white px-2 py-1 rounded text-sm font-medium">
+                      FRIDAY JUNE 20
+                    </span>
                   </div>
-                )}
+                </div>
+
+                <div className="mt-4 space-y-3">
+                  <h3 className="text-lg font-semibold line-clamp-2 group-hover:text-violet-400 transition-colors">
+                    {event.title}
+                  </h3>
+
+                  <div className="flex items-center justify-between text-sm text-gray-400">
+                    <span>{event.venue}</span>
+                    <span className="text-white font-semibold">{event.price}</span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-orange-400 font-medium">
+                      {event.date} | {event.time}
+                    </span>
+                  </div>
+
+                  {event.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {event.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 bg-gray-800 rounded text-xs text-gray-300 uppercase"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
         {/* More Events Button */}
         <div className="text-center">
+          <Link href="/events">
           <Button className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold flex items-center gap-2 mx-auto">
             MORE EVENTS IN
             <img src="https://ext.same-assets.com/2826683752/358296007.svg" alt="US Flag" className="w-5 h-3" />
             UNITED STATES
           </Button>
+            </Link>
         </div>
       </div>
     </section>

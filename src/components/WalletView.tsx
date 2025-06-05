@@ -137,7 +137,7 @@ export default function WalletView() {
               {activeTab === 'upcoming' ? 'Purchase tickets to see them here' : 'Your tickets will appear here'}
             </div>
             {activeTab === 'upcoming' && (
-              <Link href="/">
+              <Link href="/events">
                 <Button className="mt-4 bg-violet-600 hover:bg-violet-700">
                   Browse Events
                 </Button>

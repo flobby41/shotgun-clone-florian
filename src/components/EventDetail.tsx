@@ -70,7 +70,7 @@ export default function EventDetail({ eventId }: EventDetailProps) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
       {/* Back Button */}
-      <Link href="/">
+      <Link href="/events">
         <Button variant="ghost" size="sm" className="mb-6 text-gray-400 hover:text-white">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Events

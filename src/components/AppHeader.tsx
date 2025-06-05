@@ -36,7 +36,7 @@ export default function AppHeader() {
           {/* Navigation - Desktop */}
           <div className="hidden md:flex items-center space-x-3">
             <Link href="/wallet">
-              <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
+              <Button variant="ghost" size="default" className="text-gray-300 hover:text-white">
                 <Wallet className="h-4 w-4 mr-2" />
                 My Wallet
               </Button>

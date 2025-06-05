@@ -4,6 +4,8 @@ import { ApolloProvider } from '@apollo/client'
 import { apolloClient } from '@/lib/apollo'
 import EventsList from '@/components/EventsList'
 import AppHeader from '@/components/AppHeader'
+import Footer from '@/components/Footer'
+
 
 export default function EventsPage() {
   return (
@@ -13,6 +15,7 @@ export default function EventsPage() {
         <main>
           <EventsList />
         </main>
+        <Footer />
       </div>
     </ApolloProvider>
   )

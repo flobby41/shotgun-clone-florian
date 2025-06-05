@@ -5,6 +5,7 @@ import { apolloClient } from '@/lib/apollo'
 import WalletView from '@/components/WalletView'
 import AppHeader from '@/components/AppHeader'
 
+
 export default function WalletPage() {
   return (
     <ApolloProvider client={apolloClient}>

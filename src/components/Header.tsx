@@ -10,7 +10,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <svg className="h-8 w-auto text-white hover:text-violet-400 transition-colors" viewBox="0 0 200 40" fill="currentColor">
+              <svg className="h-12 w-auto text-white hover:text-violet-400 transition-colors" viewBox="0 0 200 40" fill="currentColor">
                 <text x="10" y="28" fontSize="20" fontWeight="bold" className="fill-current">
                   SHOTGUN
                 </text>

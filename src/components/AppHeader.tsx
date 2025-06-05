@@ -14,7 +14,7 @@ export default function AppHeader() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="text-xl font-bold text-white">
+            <div className="text-2xl font-bold text-white hover:text-violet-400 transition-colors">
               SHOTGUN
             </div>
           </Link>

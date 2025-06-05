@@ -36,7 +36,7 @@ export default function EventsList() {
             variant={filter === '' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilter('')}
-            className={filter === '' ? 'bg-violet-600 hover:bg-violet-700' : 'border-gray-600 text-gray-300 hover:text-black'}
+            className={filter === '' ? 'bg-violet-600 hover:bg-violet-700' : 'border-gray-600 text-gray-500 hover:text-black'}
           >
             All Events
           </Button>
@@ -44,7 +44,7 @@ export default function EventsList() {
             variant={filter === 'today' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilter('today')}
-            className={filter === 'today' ? 'bg-violet-600 hover:bg-violet-700' : 'border-gray-600 text-gray-300 hover:text-black'}
+            className={filter === 'today' ? 'bg-violet-600 hover:bg-violet-700' : 'border-gray-600 text-gray-500 hover:text-black'}
           >
             <Calendar className="w-4 h-4 mr-1" />
             Today
@@ -53,7 +53,7 @@ export default function EventsList() {
             variant={filter === 'weekend' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilter('weekend')}
-            className={filter === 'weekend' ? 'bg-violet-600 hover:bg-violet-700' : 'border-gray-600 text-gray-300 hover:text-black'}
+            className={filter === 'weekend' ? 'bg-violet-600 hover:bg-violet-700' : 'border-gray-600 text-gray-500 hover:text-black'}
           >
             <Clock className="w-4 h-4 mr-1" />
             This Weekend

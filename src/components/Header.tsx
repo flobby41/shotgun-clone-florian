@@ -38,15 +38,15 @@ export default function Header() {
           {/* Navigation Buttons - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/events">
-              <Button variant="ghost" className="text-gray-300 hover:text-white transition-colors">
-                Browse Events
+              <Button variant="ghost" className="text-gray-300 uppercase">
+                BROWSE EVENTS
               </Button>
             </Link>
-            <Button variant="ghost" className="text-gray-300 hover:text-white transition-colors">
-              I'm an organizer
+            <Button variant="ghost" className="text-gray-300 uppercase">
+              I'M AN ORGANIZER
             </Button>
-            <Button variant="outline" className="border-gray-600 text-white hover:bg-white hover:text-black transition-colors">
-              Login / Sign up
+            <Button variant="outline" className="border-gray-600 text-black uppercase hover:opacity-90 transition-opacity">
+              LOGIN / SIGN UP
             </Button>
           </div>
 
